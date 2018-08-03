@@ -1,0 +1,7 @@
+<h2>一覧</h2>
+<p><%= notice %></p>
+
+<% @pictures.each do |picture| %>
+  <%= picture.content %>
+  <%= image_tag(picture.image.url) %>
+<% end %>
