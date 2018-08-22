@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_pic, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:destroy, :edit]
+
   def top
   end
 
@@ -17,8 +19,9 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(pic_params)
+    @picture.user_id = current_user.id
     if @picture.save
-      ContactMailer.contact_mail(@contact).deliver
+      PicturesMailer.picture_mail(@picture).deliver
       redirect_to pictures_path, notice: "投稿されました！"
     else
       render :new
@@ -26,6 +29,7 @@ class PicturesController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(picture_id:@picture.id)
   end
 
   def edit
@@ -46,6 +50,7 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = Picture.new(pic_params)
+    @picture.user_id = current_user.id
     render :new if @picture.invalid?
   end
 
@@ -58,11 +63,7 @@ class PicturesController < ApplicationController
       @picture = Picture.find(params[:id])
     end
 
-    def set_contact
-      @contact = Contact.find(params[:id])
-    end
-
-    def contact_params
-      params.require(:contact).permit(:name, :email, :content)
-
+    def set_user
+     redirect_to pictures_path unless @picture.user_id == current_user.id
+  end
 end
