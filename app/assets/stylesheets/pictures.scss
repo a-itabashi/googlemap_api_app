@@ -17,6 +17,10 @@ h2{
   margin: 30px 20px 10px 20px;
 }
 
+.index_container{
+  display: flex;
+}
+
 .button{
     display: inline-block;
     padding: 7px 20px;
@@ -49,9 +53,7 @@ h2{
    transition: .4s;
    width: 130px;
    text-align: center;
-
    position: fixed;
-   top: 100;
    right: 0;
 }
 
