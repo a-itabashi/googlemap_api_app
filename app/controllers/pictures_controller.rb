@@ -54,7 +54,8 @@ class PicturesController < ApplicationController
     render :new if @picture.invalid?
   end
 
-  private
+    private
+
     def pic_params
       params.require(:picture).permit(:content, :image, :image_cache)
     end
@@ -64,6 +65,6 @@ class PicturesController < ApplicationController
     end
 
     def set_user
-     redirect_to pictures_path unless @picture.user_id == current_user.id
-  end
+      redirect_to pictures_path unless @picture.user_id == current_user.id
+    end
 end
