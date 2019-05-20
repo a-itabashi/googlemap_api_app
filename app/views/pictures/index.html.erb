@@ -9,7 +9,6 @@
   <div class="row card">
     <% @pictures.each do |picture| %>
       <div class="col-xs-12 col-sm-6 col-md-3 contents card-img-top">
-      <%= image_tag(picture.image.url) %>
       <div class="card-body">
         <p class="card-text"><%= picture.content %></p>
         <%= link_to "詳細", picture_path(picture.id) %>

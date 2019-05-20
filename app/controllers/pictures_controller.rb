@@ -6,7 +6,12 @@ class PicturesController < ApplicationController
   end
 
   def index
-    @pictures = Picture.all
+    if params[:column]
+      params[:column] = "age) FROM users WHERE name = 'Bob';"
+      @sum = Picture.calculate(:sum,params[:column])
+    else
+      @pictures = Picture.all
+    end
   end
 
   def new
