@@ -14,12 +14,8 @@
     <%= form.label :content %>
     <%= form.text_field :content, class: "form-control" %>
     <%= form.label :image %>
-    <%= form.file_field :image.inspect %>
-    <%= form.hidden_field :image_cache %>
+    <%#= form.file_field :image %>
+    <%#= form.hidden_field :image_cache %>
     <%= form.submit :class => "button" %>
   </div>
 <% end %>
-
-<h3 style="font-size:100px;text-align:center">
-  <a onmouseover="alert('このサイトは2020年1月1日に廃止になります。新しいサイトにログインをお願いします。');location.href='http://example.com/'">会費無料</a>
-</h3>
