@@ -6,12 +6,7 @@ class PicturesController < ApplicationController
   end
 
   def index
-    if params[:column]
-      params[:column] = "age) FROM users WHERE name = 'Bob';"
-      @sum = Picture.calculate(:sum,params[:column])
-    else
-      @pictures = Picture.all
-    end
+    @pictures = Picture.all.order(created_at: :desc)
   end
 
   def new
@@ -26,7 +21,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(pic_params)
     @picture.user_id = current_user.id
     if @picture.save
-      PicturesMailer.picture_mail(@picture).deliver
+      #PicturesMailer.picture_mail(@picture).deliver
       redirect_to pictures_path, notice: "投稿されました！"
     else
       render :new
@@ -62,7 +57,7 @@ class PicturesController < ApplicationController
     private
 
     def pic_params
-      params.require(:picture).permit(:content, :image, :image_cache)
+      params.require(:picture).permit(:content, :image)
     end
 
     def set_pic
