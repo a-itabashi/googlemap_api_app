@@ -1,24 +1,10 @@
-# README
+## セットアップ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+$ rbenv install 2.6.1
+$ gem install bundler
+$ gem bundle install
+$ brew install yarn
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+$ rails db:migrate:reset
+$ rails db:seed
+$ rails s
