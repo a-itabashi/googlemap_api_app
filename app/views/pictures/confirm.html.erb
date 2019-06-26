@@ -5,9 +5,13 @@
         <div class="col-xs-12 col-sm-6 col-md-3 contents card-img-top">
           <%= image_tag(@picture.image.url) %>
           <%= form.hidden_field :image_cache %><br>
-          <%= form.hidden_field :content %>
         <div class="card-body">
           <p class="card-text">content:<%= @picture.content %></p>
+          <%= form.hidden_field :content %>
+          <p class="card-text">latitude:<%= @picture.latitude %></p>
+          <%= form.hidden_field :latitude, class: "form-control" %>
+          <p class="card-text">longitude:<%= @picture.longitude %></p>
+          <%= form.hidden_field :longitude, class: "form-control" %>
         </div>
         <%= form.submit :class => "btn btn-primary" %>
         </div>
