@@ -57,7 +57,7 @@ class PicturesController < ApplicationController
     private
 
     def pic_params
-      params.require(:picture).permit(:content, :image)
+      params.require(:picture).permit(:content, :image, :image_cache)
     end
 
     def set_pic
