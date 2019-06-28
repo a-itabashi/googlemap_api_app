@@ -7,16 +7,11 @@
 <script>
 function initMap(){
   let map = new google.maps.Map(document.getElementById('map'), {
-  //center: {lat: <%= @pictures.first.latitude%>, lng: <%= @pictures.first.longitude%>},
   zoom: 15
   });
   map.panTo({lat: <%= @pictures.first.latitude%>, lng: <%= @pictures.first.longitude%>})
   
   <% @pictures.each do |picture| %>
-    
-    //var latlng = new google.maps.LatLng(<%= picture.latitude %>, <%= picture.longitude %>);
-    //map.panTo(latlng);
-
     new google.maps.Marker({
       map: map,
       position: {lat: <%= picture.latitude %>, lng: <%= picture.longitude %>}
