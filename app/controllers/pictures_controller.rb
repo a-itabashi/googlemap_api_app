@@ -1,3 +1,7 @@
+require 'net/http'
+require 'uri'
+require 'json'
+
 class PicturesController < ApplicationController
   before_action :set_pic, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:destroy, :edit]
@@ -30,6 +34,7 @@ class PicturesController < ApplicationController
 
   def show
     @favorite = current_user.favorites.find_by(picture_id:@picture.id)
+    @api_key = ENV["GOOGLE_MAP_API"]
   end
 
   def edit
@@ -54,17 +59,26 @@ class PicturesController < ApplicationController
     render :new if @picture.invalid?
   end
 
-    private
+  def map
+    
+    # @pictures = Picture.all.where('not latitude is null and not longitude is null')
+    # @pictures = Picture.all.where.not(latitude: nil).where.not(longitude: nil)
+    @pictures = Picture.all.where.not("latitude = ?", "nil").where.not("longitude = ?", "nil")
+    @api_key = ENV["GOOGLE_MAP_API"]
 
-    def pic_params
-      params.require(:picture).permit(:content, :image)
-    end
+  end
 
-    def set_pic
-      @picture = Picture.find(params[:id])
-    end
+  private
 
-    def set_user
-      redirect_to pictures_path unless @picture.user_id == current_user.id
-    end
+  def pic_params
+    params.require(:picture).permit(:content, :image, :image_cache, :latitude, :longitude)
+  end
+
+  def set_pic
+    @picture = Picture.find(params[:id])
+  end
+
+  def set_user
+    redirect_to pictures_path unless @picture.user_id == current_user.id
+  end
 end

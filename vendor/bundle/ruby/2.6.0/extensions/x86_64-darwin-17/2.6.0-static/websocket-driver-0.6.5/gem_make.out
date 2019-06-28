@@ -1,0 +1,15 @@
+current directory: /Users/aguru/Desktop/google_api_mokumoku/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/Users/aguru/.rbenv/versions/2.6.1/bin/ruby -I /Users/aguru/.rbenv/versions/2.6.1/lib/ruby/2.6.0 -r ./siteconf20190626-2178-16xyd7z.rb extconf.rb
+creating Makefile
+
+current directory: /Users/aguru/Desktop/google_api_mokumoku/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/aguru/Desktop/google_api_mokumoku/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/aguru/Desktop/google_api_mokumoku/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20190626-2178-18pgzj1

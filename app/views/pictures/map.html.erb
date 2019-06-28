@@ -1,0 +1,24 @@
+<h1>地図</h1>
+
+<div id="map" style="width: 100%; height: 500px; background-color:orange"></div>
+</div>
+
+
+<script>
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 15
+  });
+  map.panTo({lat: <%= @pictures.first.latitude%>, lng: <%= @pictures.first.longitude%>})
+  
+  <% @pictures.each do |picture| %>
+    new google.maps.Marker({
+      map: map,
+      position: {lat: <%= picture.latitude %>, lng: <%= picture.longitude %>}
+    })
+  <% end %> 
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= @api_key %>&callback=initMap" async defer></script>
+
