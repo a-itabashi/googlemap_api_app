@@ -60,10 +60,12 @@ class PicturesController < ApplicationController
   end
 
   def map
+    
     # @pictures = Picture.all.where('not latitude is null and not longitude is null')
     # @pictures = Picture.all.where.not(latitude: nil).where.not(longitude: nil)
     @pictures = Picture.all.where.not("latitude = ?", "nil").where.not("longitude = ?", "nil")
     @api_key = ENV["GOOGLE_MAP_API"]
+
   end
 
   private
