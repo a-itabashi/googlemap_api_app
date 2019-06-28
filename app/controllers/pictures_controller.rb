@@ -1,3 +1,7 @@
+require 'net/http'
+require 'uri'
+require 'json'
+
 class PicturesController < ApplicationController
   before_action :set_pic, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:destroy, :edit]
@@ -30,6 +34,7 @@ class PicturesController < ApplicationController
 
   def show
     @favorite = current_user.favorites.find_by(picture_id:@picture.id)
+    @api_key = ENV["GOOGLE_MAP_API"]
   end
 
   def edit
@@ -55,6 +60,8 @@ class PicturesController < ApplicationController
   end
 
   def map
+    @pictures = Picture.all.where('not latitude is null and not longitude is null')
+    @api_key = ENV["GOOGLE_MAP_API"]
   end
 
   private

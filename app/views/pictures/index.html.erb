@@ -9,7 +9,9 @@
   <div class="row card">
     <% @pictures.each do |picture| %>
       <div class="col-xs-12 col-sm-6 col-md-3 contents card-img-top">
-      <%= image_tag(picture.image.url) if picture.image.url %>
+      <% if false %>
+        <%= image_tag(picture.image.url) if picture.image.url %>
+      <% end %>
       <div class="card-body">
         <p class="card-text"><%= picture.content %></p>
         <p class="card-text"><%= picture.latitude %></p>

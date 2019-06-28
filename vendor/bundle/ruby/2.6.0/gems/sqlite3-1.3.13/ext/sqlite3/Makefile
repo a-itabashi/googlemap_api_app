@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/yukitamura/.rbenv/versions/2.6.1/include/ruby-2.6.0
+topdir = /Users/aguru/.rbenv/versions/2.6.1/include/ruby-2.6.0
 hdrdir = $(topdir)
-arch_hdrdir = /Users/yukitamura/.rbenv/versions/2.6.1/include/ruby-2.6.0/x86_64-darwin16
+arch_hdrdir = /Users/aguru/.rbenv/versions/2.6.1/include/ruby-2.6.0/x86_64-darwin17
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/yukitamura/.rbenv/versions/2.6.1
+prefix = $(DESTDIR)/Users/aguru/.rbenv/versions/2.6.1
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20190625-60127-6t2vsx
-sitelibdir = $(DESTDIR)./.gem.20190625-60127-6t2vsx
+sitearchdir = $(DESTDIR)./.gem.20190626-2178-azxf9d
+sitelibdir = $(DESTDIR)./.gem.20190626-2178-azxf9d
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -64,7 +64,7 @@ archdir = $(rubyarchdir)
 
 
 CC_WRAPPER = 
-CC = clang
+CC = $(CC_WRAPPER) clang
 CXX = clang++
 LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
@@ -84,12 +84,12 @@ warnflags = -Wall -Wextra -Wdeclaration-after-statement -Wdeprecated-declaration
 cppflags = 
 CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS)  -O3 -Wno-error=shorten-64-to-32  -pipe  $(ARCH_FLAG)
-INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) 
+INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) -I/usr/local/Cellar/sqlite/3.28.0/include
 DEFS     = 
-CPPFLAGS = -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64 -I/usr/local/Cellar/sqlite/3.28.0/include -I/Users/yukitamura/.rbenv/versions/2.6.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CPPFLAGS = -DHAVE_RB_PROC_ARITY -DHAVE_RB_INTEGER_PACK -DHAVE_SQLITE3_INITIALIZE -DHAVE_SQLITE3_BACKUP_INIT -DHAVE_SQLITE3_COLUMN_DATABASE_NAME -DHAVE_SQLITE3_ENABLE_LOAD_EXTENSION -DHAVE_SQLITE3_LOAD_EXTENSION -DHAVE_SQLITE3_OPEN_V2 -DHAVE_SQLITE3_PREPARE_V2 -DHAVE_TYPE_SQLITE3_INT64 -DHAVE_TYPE_SQLITE3_UINT64 -I/usr/local/opt/sqlite/include -I/Users/aguru/.rbenv/versions/2.6.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags)  $(ARCH_FLAG)
-ldflags  = -L. -L/Users/yukitamura/.rbenv/versions/2.6.1/lib  -fstack-protector-strong -L/usr/local/lib 
-dldflags = -L/Users/yukitamura/.rbenv/versions/2.6.1/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
+ldflags  = -L. -L/Users/aguru/.rbenv/versions/2.6.1/lib  -fstack-protector-strong -L/usr/local/lib -L/usr/local/Cellar/sqlite/3.28.0/lib
+dldflags = -L/Users/aguru/.rbenv/versions/2.6.1/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -dynamic -bundle
@@ -104,7 +104,7 @@ RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-darwin16
+arch = x86_64-darwin17
 sitearch = $(arch)
 ruby_version = 2.6.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -124,8 +124,8 @@ TOUCH = exit >
 #### End of system configuration section. ####
 
 preload = 
-libpath = . $(libdir) /usr/local/Cellar/sqlite/3.28.0/lib
-LIBPATH =  -L. -L$(libdir) -L/usr/local/Cellar/sqlite/3.28.0/lib
+libpath = . $(libdir) /usr/local/opt/sqlite/lib
+LIBPATH =  -L. -L$(libdir) -L/usr/local/opt/sqlite/lib
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -140,7 +140,7 @@ LIBS =  -lsqlite3 -lpthread  -lsqlite3
 ORIG_SRCS = backup.c database.c exception.c sqlite3.c statement.c
 SRCS = $(ORIG_SRCS) 
 OBJS = backup.o database.o exception.o sqlite3.o statement.o
-HDRS = $(srcdir)/backup.h $(srcdir)/database.h $(srcdir)/exception.h $(srcdir)/sqlite3_ruby.h $(srcdir)/statement.h
+HDRS = $(srcdir)/statement.h $(srcdir)/backup.h $(srcdir)/database.h $(srcdir)/sqlite3_ruby.h $(srcdir)/exception.h
 LOCAL_HDRS = 
 TARGET = sqlite3_native
 TARGET_NAME = sqlite3_native

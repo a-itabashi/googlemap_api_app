@@ -1,6 +1,6 @@
 <div class="container_fluid">
   <div class="col-xs-12 col-sm-6 col-md-3 contents card-img-top">
-    <%=image_tag (@picture.image.url) %>
+    <%=image_tag (@picture.image.url), :size => "16x16" %>
     <div class="card-body">
       <p class="card-text"><%=@picture.user.name %><br><%=@picture.content %></p></p>
         <% unless @picture.user == current_user %>
@@ -18,4 +18,19 @@
     </div>
   </div>
 </div>
+
+<script>
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: <%= @picture.latitude %>, lng: <%= @picture.longitude %>},
+  zoom: 20
+  });
+  marker = new google.maps.Marker({ 
+      position: {lat: <%= @picture.latitude %>, lng: <%= @picture.longitude %>}, 
+      map: map
+   });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= @api_key %>&callback=initMap" async defer></script>
+
 

@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/yukitamura/.rbenv/versions/2.6.1/include/ruby-2.6.0
+topdir = /Users/aguru/.rbenv/versions/2.6.1/include/ruby-2.6.0
 hdrdir = $(topdir)
-arch_hdrdir = /Users/yukitamura/.rbenv/versions/2.6.1/include/ruby-2.6.0/x86_64-darwin16
+arch_hdrdir = /Users/aguru/.rbenv/versions/2.6.1/include/ruby-2.6.0/x86_64-darwin17
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/yukitamura/.rbenv/versions/2.6.1
+prefix = $(DESTDIR)/Users/aguru/.rbenv/versions/2.6.1
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20190625-60127-gs1jik
-sitelibdir = $(DESTDIR)./.gem.20190625-60127-gs1jik
+sitearchdir = $(DESTDIR)./.gem.20190626-2178-uikm2j
+sitelibdir = $(DESTDIR)./.gem.20190626-2178-uikm2j
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -64,7 +64,7 @@ archdir = $(rubyarchdir)
 
 
 CC_WRAPPER = 
-CC = clang
+CC = $(CC_WRAPPER) clang
 CXX = clang++
 LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
@@ -86,10 +86,10 @@ CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS)  -O3 -Wno-error=shorten-64-to-32  -pipe $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_OPENSSL_BIO_H -I/usr/local/opt/openssl/include -I/Users/yukitamura/.rbenv/versions/2.6.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CPPFLAGS = -DHAVE_OPENSSL_BIO_H -I/usr/local/opt/openssl/include -I/Users/aguru/.rbenv/versions/2.6.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
-ldflags  = -L. -L/Users/yukitamura/.rbenv/versions/2.6.1/lib  -fstack-protector-strong -L/usr/local/lib
-dldflags = -L/Users/yukitamura/.rbenv/versions/2.6.1/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
+ldflags  = -L. -L/Users/aguru/.rbenv/versions/2.6.1/lib  -fstack-protector-strong -L/usr/local/lib
+dldflags = -L/Users/aguru/.rbenv/versions/2.6.1/lib  -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -dynamic -bundle
@@ -104,7 +104,7 @@ RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-darwin16
+arch = x86_64-darwin17
 sitearch = $(arch)
 ruby_version = 2.6.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -140,7 +140,7 @@ LIBS =  -lssl -lcrypto
 ORIG_SRCS = http11_parser.c io_buffer.c mini_ssl.c puma_http11.c
 SRCS = $(ORIG_SRCS) 
 OBJS = http11_parser.o io_buffer.o mini_ssl.o puma_http11.o
-HDRS = $(srcdir)/ext_help.h $(srcdir)/http11_parser.h
+HDRS = $(srcdir)/http11_parser.h $(srcdir)/ext_help.h
 LOCAL_HDRS = 
 TARGET = puma_http11
 TARGET_NAME = puma_http11
